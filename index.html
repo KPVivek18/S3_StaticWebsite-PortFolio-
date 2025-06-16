@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pruthvi Vivek Kayagurala – Cloud & Software Engineer</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      color: #e8eaed;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Animated background particles */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 99, 132, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(54, 235, 199, 0.1) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    a {
+      color: #36ebc7;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      color: #ff6384;
+      text-shadow: 0 0 8px rgba(255, 99, 132, 0.5);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ff6384, #36ebc7, #7777c6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px rgba(54, 235, 199, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(255, 99, 132, 0.5)); }
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(54, 235, 199, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #e8eaed;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      position: relative;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(135deg, #36ebc7, #7777c6);
+      color: #0f0f23;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(54, 235, 199, 0.3);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Profile Card */
+    .profile {
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(54, 235, 199, 0.2);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 120px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .profile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 80px rgba(54, 235, 199, 0.2);
+    }
+
+    .profile img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid transparent;
+      background: linear-gradient(135deg, #36ebc7, #ff6384, #7777c6);
+      padding: 4px;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .profile img:hover {
+      transform: scale(1.05) rotate(5deg);
+      filter: brightness(1.1);
+    }
+
+    .profile h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #36ebc7, #7777c6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .profile p.title {
+      font-weight: 500;
+      color: #b8bcc8;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Content */
+    .content {
+      background: rgba(26, 26, 46, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(54, 235, 199, 0.1);
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff6384, #36ebc7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #ff6384, #36ebc7);
+      border-radius: 2px;
+    }
+
+    section p.summary {
+      font-size: 1.1rem;
+      color: #b8bcc8;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    /* Skills */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .skill-item {
+      background: linear-gradient(135deg, rgba(54, 235, 199, 0.1), rgba(119, 119, 198, 0.1));
+      color: #36ebc7;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(54, 235, 199, 0.3);
+      transition: all 0.3s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(54, 235, 199, 0.3);
+      border-color: #36ebc7;
+    }
+
+    .skill-item:hover::before {
+      left: 100%;
+    }
+
+    /* Experience & Projects */
+    .job, .project {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: rgba(22, 33, 62, 0.4);
+      border-radius: 16px;
+      border-left: 4px solid #36ebc7;
+      transition: all 0.3s ease;
+    }
+
+    .job:hover, .project:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 40px rgba(54, 235, 199, 0.1);
+      border-left-color: #ff6384;
+    }
+
+    .job-title, .project-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #36ebc7;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-duration {
+      font-style: italic;
+      color: #7777c6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .job-summary, .project-summary {
+      font-size: 1rem;
+      color: #b8bcc8;
+      line-height: 1.6;
+    }
+
+    /* Leadership */
+    #leadership .role {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: rgba(22, 33, 62, 0.4);
+      border-radius: 16px;
+      border-left: 4px solid #7777c6;
+      transition: all 0.3s ease;
+    }
+
+    #leadership .role:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 40px rgba(119, 119, 198, 0.1);
+      border-left-color: #ff6384;
+    }
+
+    #leadership .role-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #7777c6;
+      margin-bottom: 0.5rem;
+    }
+
+    #leadership .role-duration, 
+    #leadership .role-location {
+      font-style: italic;
+      color: #36ebc7;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    #leadership .role-desc {
+      font-size: 1rem;
+      color: #b8bcc8;
+      line-height: 1.6;
+    }
+
+    /* Contact */
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .contact-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: #36ebc7;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(54, 235, 199, 0.1);
+      border: 2px solid rgba(54, 235, 199, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 99, 132, 0.1), rgba(119, 119, 198, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-icon:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(54, 235, 199, 0.3);
+      border-color: #36ebc7;
+    }
+
+    .contact-icon:hover::before {
+      opacity: 1;
+    }
+
+    .contact-icon svg {
+      transition: all 0.3s ease;
+      z-index: 1;
+      position: relative;
+    }
+
+    .contact-icon:hover svg {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 10px rgba(54, 235, 199, 0.5));
+    }
+
+    .contact-icon span {
+      font-size: 1rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-top: 5rem;
+      border-top: 1px solid rgba(54, 235, 199, 0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin: 2rem auto;
+      }
+      
+      .profile {
+        position: static;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      nav ul {
+        gap: 1.5rem;
+        padding: 1rem 0;
+      }
+      
+      nav ul li a {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .content {
+        padding: 2rem 1.5rem;
+      }
+      
+      .contact-icons {
+        gap: 1.5rem;
+      }
+      
+      .contact-icon {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 3rem 1rem;
+      }
+      
+      section h3 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation"></div>
+
+  <header>
+    <h1>Pruthvi Vivek Kayagurala</h1>
+    <p>Cloud & Software Engineer | AWS Certified Solutions Architect Associate</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <aside class="profile">
+		<img src="images/profile.jpg" alt="Pruthvi Vivek Kayagurala" />
+		<h2>Pruthvi Vivek Kayagurala</h2>
+		<p class="title">Cloud & Software Engineer</p>
+	</aside>
+
+    <main class="content">
+      <section id="about">
+        <h3>About Me</h3>
+        <p class="summary">
+          I am a passionate Cloud and Software Engineer with a Master's degree in Computer Science, specializing in designing scalable, secure, and cost-effective cloud solutions. Skilled in AWS and Azure cloud platforms, DevOps automation, and software development with Python, Go, and Java. I thrive on solving complex problems and delivering impactful technology solutions that drive business success.
+        </p>
+      </section>
+
+      <section id="skills">
+        <h3>Technical Skills</h3>
+        <div class="skills-list">
+          <span class="skill-item">AWS (EC2, S3, Lambda, IAM, SNS)</span>
+          <span class="skill-item">Azure</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Go</span>
+          <span class="skill-item">Java</span>
+          <span class="skill-item">Bash Scripting</span>
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">Kubernetes</span>
+          <span class="skill-item">Terraform</span>
+          <span class="skill-item">Ansible</span>
+          <span class="skill-item">Jenkins</span>
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">PostgreSQL</span>
+          <span class="skill-item">MongoDB</span>
+          <span class="skill-item">Grafana</span>
+          <span class="skill-item">CloudWatch</span>
+          <span class="skill-item">Datadog</span>
+          <span class="skill-item">React.js</span>
+          <span class="skill-item">Agile & Scrum</span>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h3>Professional Experience</h3>
+        <div class="job">
+          <div class="job-title">Associate Software Engineer – Carelon Global Solutions</div>
+          <div class="job-duration">June 2021 – August 2023 | Hyderabad, India</div>
+          <p class="job-summary">
+            Delivered scalable and secure AWS cloud infrastructures and automated workflows to optimize system performance and reliability across development, staging, and production environments. Engineered serverless applications, improved cross-region communication, and implemented disaster recovery strategies. Enhanced CI/CD pipelines and operational efficiency through custom automation, significantly reducing downtime and manual workloads.
+          </p>
+        </div>
+        <div class="job">
+          <div class="job-title">Cloud Engineer Intern – Seshaasai</div>
+          <div class="job-duration">May 2020 – June 2021 | Bangalore, India</div>
+          <p class="job-summary">
+            Automated hybrid cloud deployments spanning AWS and Azure, improving reliability, security, and operational efficiency. Managed and optimized microservices, database availability, and security through RBAC in Kubernetes. Led incident response and troubleshooting efforts, minimizing downtime and business impact.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h3>Selected Projects</h3>
+        <div class="project">
+          <div class="project-title">AWS-Integrated Flask Task Manager</div>
+          <p class="project-summary">
+            Developed a scalable Flask-based task management application leveraging AWS EC2, RDS, and S3 for hosting, secure data storage, and file management.
+          </p>
+        </div>
+        <div class="project">
+          <div class="project-title">Distributed TSP Solver Using HPC & Cloud</div>
+          <p class="project-summary">
+            Designed a parallelized Traveling Salesman Problem solver using Python and Linux scripts across AWS and HPC resources, optimizing computational performance on a large dataset.
+          </p>
+        </div>
+        <div class="project">
+          <div class="project-title">Cross-Language ML Model Porting</div>
+          <p class="project-summary">
+            Converted and validated a MATLAB machine learning model to Python ensuring functional equivalence via stepwise output validation.
+          </p>
+        </div>
+        <div class="project">
+          <div class="project-title">Relational Algebra Query Engine in Python</div>
+          <p class="project-summary">
+            Built a Python-based engine to evaluate relational algebra queries on CSV datasets, supporting complex data retrieval operations.
+          </p>
+        </div>
+      </section>
+
+      <section id="leadership">
+        <h3>Leadership & Mentorship</h3>
+
+        <div class="role">
+          <div class="role-title">UCIE Peer Mentor</div>
+          <div class="role-duration">Jun 2024 - May 2025 · 1 yr</div>
+          <div class="role-location">University Center for International Education, Fairborn OH</div>
+          <p class="role-desc">
+            Proactively engaged with incoming students through regular communication before and after their arrival, fostering a welcoming environment and providing essential guidance for smooth adjustment to new academic and cultural settings. Served as a reliable resource and advocate for student needs, mentoring them on academic involvement, personal growth, and successful navigation of their new surroundings. Demonstrated strong cross-cultural sensitivity and adaptability, enhancing each student's experience within a diverse and inclusive community.
+          </p>
+        </div>
+
+        <div class="role">
+          <div class="role-title">General Secretary – Indian Student Association</div>
+          <div class="role-duration">Mar 2024 - Dec 2024 · 10 mos</div>
+          <div class="role-location">Wright State University</div>
+          <p class="role-desc">
+            Led efforts to expand the team and strengthen collaboration with the University Center for International Education (UCIE). Organized successful events like Yours Anonymously, a mental health initiative providing a safe space for student connection, and the 2024 Festival of Lights, attended by over 1,500 people. Fostered meaningful community connections and contributed to a supportive, culturally vibrant student environment.
+          </p>
+        </div>
+
+        <div class="role">
+          <div class="role-title">Peer Mentor – Counseling and Wellness Services</div>
+          <div class="role-location">Wright State University</div>
+          <p class="role-desc">
+            Conducted meetings with students and delivered presentations on mental health awareness and suicide prevention. Supported a stigma-free campus mental health culture through peer-based services as part of a grant-funded initiative from Wright State University Foundation's Students First Fund.
+          </p>
+        </div>
+
+      </section>
+
+      <section id="contact">
+        <h3>Contact Me</h3>
+        <div class="contact-icons">
+          <a href="mailto:kayaguralapruthvivivek@gmail.com" title="Send Email" class="contact-icon" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span>Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/pruthvi-vivek-kayagurala-2469691a3" target="_blank" rel="noopener" title="LinkedIn Profile" class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+              <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7h4.7v2.2h.1c.7-1.3 2.5-2.2 4.9-2.2 5.2 0 6.2 3.4 6.2 7.8V24h-5v-7.8c0-1.8-.03-4-2.4-4-2.4 0-2.8 1.8-2.8 3.9V24h-5V7z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/KPVivek18" target="_blank" rel="noopener" title="GitHub Profile" class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+              <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.21 11.44c.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.91 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.28-1.23 3.28-1.23.67 1.65.25 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.59-2.8 5.6-5.47 5.89.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.21.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer>
+    © 2025 Pruthvi Vivek Kayagurala. All rights reserved.
+  </footer>
+
+</body>
+</html>
