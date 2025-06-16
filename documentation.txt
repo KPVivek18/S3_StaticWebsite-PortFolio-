@@ -1,6 +1,4 @@
-Certainly, Vivek! Here’s a detailed, paragraph-style documentation covering every step of your project clearly and comprehensively:
 
----
 
 # Detailed Project Documentation: Hosting a Secure Portfolio Website on AWS
 
